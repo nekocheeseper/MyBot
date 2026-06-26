@@ -1,0 +1,9 @@
+[project]
+name = "MyBot"
+version = "0.1.0"
+description = "A Discord Bot"
+requires-python = ">=3.13.*"
+
+dependencies = [
+    "discord.py>=2.6.2",
+]
