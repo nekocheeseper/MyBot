@@ -1,8 +1,9 @@
-import time
 import pathlib
+import time
+
 import _src.utils as utils
-from . import start
-from . import event
+
+from . import event, start
 
 logger = None
 

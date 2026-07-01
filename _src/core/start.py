@@ -18,7 +18,7 @@ async def setup_hook(bot):
         if not folder.is_dir(): continue
         cog = folder / "cog.py"
         if cog.exists():
-            INITIAL_EXTENSIONS.append(f"mod.{folder.name}.cog")
+            INITIAL_EXTENSIONS.append(f"_src.mod.{folder.name}.cog")
     for extension in INITIAL_EXTENSIONS:
         try:
             await bot.load_extension(extension)

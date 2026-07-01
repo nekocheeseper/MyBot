@@ -1,5 +1,6 @@
 import discord
 import discord.ext.commands
+
 import _src.core as core
 
 bot = discord.ext.commands.Bot(command_prefix = "\\", help_command = None, intents = core.intents)

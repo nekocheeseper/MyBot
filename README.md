@@ -1,6 +1,7 @@
 # MyBot
 
 A modular Discord bot framework for learning, experimentation, and future extensions.
+I will add some interesting features from time to time, which you can use or delete in the mod/ directory.
 
 ## Goals
 
