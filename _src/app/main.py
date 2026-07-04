@@ -1,11 +1,16 @@
+"""
+Application entry.
+
+Creates the Discord bot, registers event handlers,
+and starts the application.
+
+"""
 import discord
 import discord.ext.commands
 
 import _src.core as core
 
-bot = discord.ext.commands.Bot(command_prefix = "\\", help_command = None, intents = core.intents)
-
-core.init(bot)
+bot = discord.ext.commands.Bot(command_prefix = "\\", help_command = None, intents = core.intents())
 
 @bot.event
 async def setup_hook():
@@ -37,4 +42,9 @@ async def on_voice_state_update(member, before, after):
     await core.event.on_voice_state_update(member, before, after, bot)
     return
 
-bot.run(core.token(bot), log_formatter = core.utils.logger.ColourFormatter())
+def main():
+    """Initialize and run the Discord bot."""
+
+    core.init(bot)
+    # Keep the log output format consistent.
+    bot.run(core.token(bot), log_formatter = core.utils.logger.ColourFormatter())

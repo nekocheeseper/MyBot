@@ -1,3 +1,9 @@
+"""
+Event dispatcher.
+
+Routes Discord events to various modules.
+
+"""
 
 async def on_presence_update(before, after, bot) -> bool:
     return

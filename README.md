@@ -24,12 +24,16 @@ MyBot/
 │   ├── core/
 │   ├── mod/
 │   └── utils/
+├── config/
 ├── data/
 │   └── token
 ├── logs/
+├── test/
 ├── .gitignore
+├── CHANGELOG.md/
 ├── LICENSE
 ├── README.md
+├── TODO.md
 ├── pyproject.toml
 ├── requirements.txt
 ├── run.bat
@@ -41,6 +45,7 @@ MyBot/
 
 - Python 3.13
 - discord.py
+- ollama
 
 ## Installation
 

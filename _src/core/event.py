@@ -1,3 +1,10 @@
+"""
+Discord event handlers.
+
+Receives Discord events, forwards them to the dispatcher,
+and logs the processed events.
+
+"""
 import time
 
 import _src.utils as utils
@@ -12,6 +19,11 @@ def init():
     logger.init("event")
 
 async def on_ready(bot):
+    '''----------------------------------------------------------------------'''
+    import discord
+    await bot.change_presence(status = discord.Status.invisible)
+    '''----------------------------------------------------------------------'''
+    """Log the bot's preparation time."""
     logger.info(f"Bot is ready in %.2f seconds"%(time.perf_counter() - bot.start_time))
     logger.info(f"Logged in as {bot.user} | ID: {bot.user.id}")
     bot.start_time = None
@@ -23,6 +35,7 @@ async def on_presence_update(before, after, bot):
     return
 
 async def on_message(message, bot):
+    # TODO: I think there could be a better way.
     if message.author.id == bot.user.id: return
     ctx = await bot.get_context(message)
     await bot.process_commands(message)

@@ -64,13 +64,15 @@ class ai_chat(commands.Cog):
             await ctx.send("回覆不過來啦喵!")
             return
         self.luck = True
-        message = ctx.message.content[1:]
-        response = await self.ai_chat(ctx, message)
-        if response is None or response == "":
+        try:
+            message = ctx.message.content[1:]
+            response = await self.ai_chat(ctx, message)
+            if response is None or response == "":
+                self.luck = False
+                return
+            await ctx.send(response)
+        finally:
             self.luck = False
-            return
-        await ctx.send(response)
-        self.luck = False
 
 async def setup(bot):
     await bot.add_cog(ai_chat(bot))

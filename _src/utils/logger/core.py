@@ -3,6 +3,12 @@ import logging
 import pathlib
 
 class ColourFormatter(logging.Formatter):
+    """
+    Console log formatter based on the Discord.py implementation.
+
+    Modified to keep only the colored console output.
+
+    """
     COLOURS = [
         (logging.DEBUG, '\x1b[40;1m'),
         (logging.INFO, '\x1b[34;1m'),
@@ -26,6 +32,7 @@ class ColourFormatter(logging.Formatter):
         return output
     
 class DailyFileHandler(logging.FileHandler):
+    """Log handler that creates a new log file each day."""
     def __init__(self, log_dir: str):
         self.log_dir = pathlib.Path(log_dir)
         self.log_dir.mkdir(parents=True, exist_ok=True)
@@ -48,13 +55,24 @@ class DailyFileHandler(logging.FileHandler):
         except Exception:
             self.handleError(record)
 
+# Shared logging configuration initialized by init().
 log_header = None
 daily_file_handler = None
     
 def init(base_dir, header):
+    """
+    Initialize the global logging system.
+
+    Creates the shared file handler and global configuration
+    used by all Logger instances.
+    This function must be called before Logger.init().
+    
+    """
     global log_header, daily_file_handler
     log_header = header
     daily_file_handler = DailyFileHandler(log_dir = f"{base_dir}/logs/")
+
+    # Configure the Discord.py logger to use the same file handler.
     file_handler = daily_file_handler
     file_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)-8s %(name)s %(message)s", "%Y-%m-%d %H:%M:%S"))
     discord_logger = logging.getLogger("discord")
@@ -63,6 +81,7 @@ def init(base_dir, header):
     return
 
 class Logger:
+    """Project logger wrapper."""
     def __init__(self):
         self.logger = None
         return
